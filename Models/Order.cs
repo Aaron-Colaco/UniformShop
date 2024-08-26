@@ -19,7 +19,7 @@ namespace ShopUnifromProject.Models
         [DataType(DataType.Currency),Range(1,1000)]
         public decimal TotalPrice { get; set; }
 
-      
+        public DateTime CollectionTime { get; set; } 
 
         // Collection of items in the order
         public ICollection<OrderItem> OrderItems { get; set; }
