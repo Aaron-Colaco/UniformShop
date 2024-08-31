@@ -2,7 +2,97 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<style>
+    .container {
+        height: fit-content !important;
+    }
+</style>
+
+<section id="Heading">
+    <h1 id="MainTitle" style="text-decoration:underline;"> AVCOL Uniform</h1>
+    <p style="color:white;" class="Introduction">
+        Click and Collect for Avondale College's Shop.
+
+
+
+
+
+
+    </p>
+
+</section>
+
+<div class="pictures">
+    <img src="https://media.licdn.com/dms/image/C4D1BAQGcAVCBfHf4xQ/company-background_10000/0/1583615926993/avondale_college_auckland_cover?e=2147483647&v=beta&t=M9RHcqyJd0WTOS6yDZii34qjlLQvQ6c27mjAURqMU8E" alt="Picture" class="pictureofschool">
 </div>
+
+<section class="about-section">
+    <div class="AboutContent">
+        <div class="about-content">
+            <img src="https://static.wixstatic.com/media/6dc53a_179cc377cd4e4dae8021b62aa04f94ff~mv2.png/v1/fill/w_560,h_744,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/AvCol_Logo_2020_PMB_vertical%20on%20WHITE_pn.png" alt="Company Logo" class="about-logo">
+            <div class="about-text">
+                <h1 class="blueunder" style="margin-left: -30%;">About Us</h1>
+                <p>
+                    Welcome to our Online Uniform Shop!
+
+                    At Avondale College we our aim "is excellence" it is at the heart of everything we do. We believe that achieving excellence begins with the right uniform.
+
+                    Were excited to introduce our new Click and Collect option, designed to make your shopping experience even more convenient.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<div class="bestsellers">
+    <h1 class="blueunder">Best Sellers</h1>
+    <div class="items">
+        <div class="item">
+            <img src="https://th.bing.com/th/id/OIP.Xzzv8CwcOBDVcibpspo6jQHaJ_?rs=1&pid=ImgDetMain" alt="Item 3">
+            <h3>Long Black Shocks</h3>
+            <h2 class="blueunder">$12</h2>
+            <p>Made of 100% Wool</p>
+            <form asp-controller="Items">
+
+
+                <input type="hidden" name="itemId" value="15" />
+            </form>
+        </div>
+        <div class="item">
+            <img src="../Images/longshirt.png" alt="Item 2">
+            <h3>Polo shirt (long sleeve)</h3>
+            <h2 class="blueunder">$51</h2>
+            <p>Perfect for Winter and Summer</p>
+            <form asp-controller="Items" >
+
+
+                <input type="hidden" name="itemId" value="2" />
+            </form>
+        </div>
+
+        <div class="item">
+            <img src="https://cdn.theschoollocker.com.au/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/h/short_tkis.jpg" alt="Item 1">
+            <h3>Shorts</h3>
+            <h2 class="blueunder">$50</h2>
+            <p>Keep Cool in Summer</p>
+            <form asp-controller="Items" asp-action="SizePicker">
+
+
+                <input type="hidden" name="itemId" value="5" />
+                <input type="submit" value="Add To Cart" class="AddToCart" />
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<br>
