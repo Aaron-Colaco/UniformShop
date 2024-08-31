@@ -1,0 +1,127 @@
+﻿﻿@{
+    ViewData["Title"] = "SalesDashBoard";
+}
+
+<style> 
+
+.Sales{ 
+
+ 
+
+display: grid; 
+
+grid-template-rows: 20vh, 20vh; 
+
+grid-template-columns: 30% 30% 30%; 
+
+grid-row-gap: 30px; 
+
+grid-column-gap: 30px; 
+
+grid-gap: 30px; 
+
+} 
+
+ 
+
+.SalesInformationBox{ 
+
+width: 100%; 
+padding-left:7%;
+
+height: 25dvh; 
+
+border-radius: 28px; 
+
+background-color:black;
+
+ 
+
+} 
+
+.WidgetText{ 
+
+font-size: 1.5rem; 
+
+font-family: sans-serif; 
+
+padding-left: 5%; 
+
+padding-right: 5%; 
+
+align-content: center; 
+
+color: white; 
+
+} 
+
+</style> 
+
+ 
+
+ <!---Thsi Code get the date from the view bag and displays it the widgets I created -->
+
+<div class="Sales" style="color:whitesmoke">  
+
+ 
+
+<div class="SalesInformationBox">  
+
+<h3 class="WidgetText">Total Profit</h3> 
+
+<h1>
+   $ @ViewBag.profit
+</h1>
+ 
+
+</div> 
+
+<div class="SalesInformationBox" >  
+
+<h3 class="WidgetText" > Total Sales</h3>
+
+        <h1> 
+           $ @ViewBag.totalSales
+        </h1>
+ 
+
+</div> 
+
+<div class="SalesInformationBox" >  
+
+ 
+
+<h3 class="WidgetText" > Total Expensies</h3>
+
+        <h1> $ @ViewBag.totalExpense</h1>
+ 
+
+</div> 
+
+ 
+
+<div class="SalesInformationBox" >  
+
+<h3 class="WidgetText"> Total Products Sold</h3>
+
+        <h1>  @ViewBag.totalProductsSold</h1>
+</div> 
+
+
+
+ 
+
+<div class="SalesInformationBox" >  
+
+ 
+
+<h3 class="WidgetText"> Average Order Cost</h3>
+
+
+        <h1>
+          $ @ViewBag.averageOrderCost
+        </h1>
+ 
+
+</div> 
+</div>

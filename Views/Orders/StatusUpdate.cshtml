@@ -1,0 +1,47 @@
+﻿@model ShopUnifromProject.Models.Order
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>Update</h2>
+
+<h4>Update Order from @ViewBag.Customer</h4>
+<h5>
+    palced on the  @ViewBag.Date
+</h5>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+      
+
+
+        <form asp-action="UpdateOrder">
+          
+            
+            <input type="hidden" name="OrderId" value="@ViewBag.OrderId " />
+
+
+            <select name="Status">
+                @{
+
+
+                    foreach (var Status in ViewBag.Status){
+                        <option value="@Status.StatusId">@Status.Name</option>
+                    }
+                    
+                }
+            </select>
+            
+           <input type="submit" />
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

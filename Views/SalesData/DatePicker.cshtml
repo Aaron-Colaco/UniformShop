@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "DatePicker";
+
+    // Calculates the minimum date for the form to be one year prior to today
+    DateTime min = DateTime.Today.AddMonths(-12);
+
+    // Sets the maximum date for the form to be the current date and time
+    DateTime max = DateTime.Now;
+
+
+}
+
+
+<form asp-controller="SalesData" asp-action="SalesDashboard">
+
+    <h1>Please Select Two Dates to see Sales Data From</h1>
+
+
+    <label for="Date1">Date 1</label>
+    <!-- Date input field with required attribute, min and max dates calculated above, and placeholder -->
+    <input required type="datetime-local" min="@min.ToString("yyyy-MM-dd")T00:00" max="@max.ToString("yyyy-MM-ddTHH:mm")" id="Date1" name="Date1" placeholder="00/00/0000" />
+
+
+
+    <label for="Date2">Date 2</label>
+    <!-- Date input field with required attribute, min and max dates calculated above, and placeholder -->
+
+    <input required type="datetime-local" min="@min.ToString("yyyy-MM-dd")T00:00" max="@max.ToString("yyyy-MM-ddTHH:mm")" id="Date2" name="Date2" placeholder="00/00/0000" />
+
+
+
+
+    <input type="submit" />
+</form>
