@@ -3,45 +3,126 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ShopUnifromProject</title>
+    <title>@ViewData["Title"] - Avondale College Uniform</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ShopUnifromProject.styles.css" asp-append-version="true" />
+
+
 </head>
 <body>
+    <style>
+        body {
+            font-family: sans-serif;
+            height: 100vh;
+        }
+    </style>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ShopUnifromProject</a>
+        <nav style="background-color: black; margin-bottom:1%;" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 ">
+
+            <div font-family: sans-serif; class="container-fluid">
+                <a class="navbar-brand" style="color: white; font-family: sans-serif; font-weight:bolder" asp-area="" asp-controller="Home" asp-action="Index"> AVCOL UNIFORM</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div style="font-family: sans-serif;" class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="Items" asp-action="Index">See Items</a>
                         </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="SalesData" asp-action="DatePicker">Admin Sales Data</a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="Orders" asp-action="Index">My Orders</a>
+                        </li>
+
+                        <li style="margin-left:54%">
+
+                            <form class="Search" asp-action="Search" asp-controller="Items">
+
+                                <input style="border-radius: 20px; height: 4vh;" maxlength="50" class="SearchTerm" name="SearchTerm" type="text" placeholder="Search An Item" />
+
+                                <button type="submit" style="background: none; border: none; cursor: pointer;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path fill="#ffffff" d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                    </svg>
+                                </button>
+
+
+                            </form>
+
+
+                            <style>
+                                .Search {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    margin-top: 1%;
+                                }
+
+                                .nav-link text-light {
+                                    color: gray;
+                                }
+
+                                .SearchTerm {
+                                    border-radius: 20px;
+                                    border: 1px solid #ccc;
+                                    padding: 10px;
+                                    height: 4vh;
+                                    opacity: 30;
+                                }
+                            </style>
+
+
+
+
+
                     </ul>
+
                     <partial name="_LoginPartial" />
+
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div style="height: 100vh;" class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+    <style>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - ShopUnifromProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+
+    </style>
+
+
+
+    <footer style="background-color: black; color: white; height: 6vh; margin-top: 6%; padding-top:1%; padding-bouttom:1%; padding-right:1%">
+        <div class="" style="text-align: right;">
+            <h6 style="color: white;"> &copy; 2024  Project by Aaron Colaco <a style="color: teal;" href="https://github.com/Aaron-Colaco">Github link</a></h6>
         </div>
     </footer>
+
+
+
+    <script>
+        windowonload = function () {
+            document.body.visibility = "visible";
+        };
+    </script>
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
