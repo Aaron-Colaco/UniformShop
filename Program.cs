@@ -46,6 +46,8 @@ namespace ShopUnifromProject
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
+            DataForDatabase.AddData(app);
+
             app.Run();
         }
     }
