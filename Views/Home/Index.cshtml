@@ -45,6 +45,59 @@
     </div>
 </section>
 
+<style>
+
+
+    body {
+        background-color: rgb(250, 250, 250);
+        padding: 0%;
+        font-family: sans-serif;
+    }
+
+    .AboutContent {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+    }
+
+    .container {
+        max-width: 1200px;
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .about-content {
+        display: flex;
+        align-items: center;
+    }
+
+
+
+    .about-text h1 {
+        margin: 0;
+    }
+
+    .about-text p {
+        margin: 10px 0 0;
+        font-size: 1.2em;
+        line-height: 1.6;
+    }
+
+
+    input[type="text"] {
+        border: 1px solid black;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+</style>
+
+
+
 
 
 
@@ -62,10 +115,11 @@
             <h3>Long Black Shocks</h3>
             <h2 class="blueunder">$12</h2>
             <p>Made of 100% Wool</p>
-            <form asp-controller="Items">
+            <form  asp-controller="Items" asp-action="SizePicker">
 
 
                 <input type="hidden" name="itemId" value="15" />
+                <input type="submit" value="Add To Cart" class="AddToCart" />
             </form>
         </div>
         <div class="item">
@@ -73,13 +127,14 @@
             <h3>Polo shirt (long sleeve)</h3>
             <h2 class="blueunder">$51</h2>
             <p>Perfect for Winter and Summer</p>
-            <form asp-controller="Items" >
+            <form  asp-controller="Items" asp-action="SizePicker">
 
 
                 <input type="hidden" name="itemId" value="2" />
+                <input type="submit" value="Add To Cart" class="AddToCart" />
             </form>
         </div>
-
+    
         <div class="item">
             <img src="https://cdn.theschoollocker.com.au/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/h/short_tkis.jpg" alt="Item 1">
             <h3>Shorts</h3>
@@ -96,3 +151,390 @@
 </div>
 <br>
 <br>
+<style>
+    h1 {
+        text-align: center;
+        font-size: 2.5em;
+        text-decoration: underline;
+    }
+
+    p {
+        font-size: 1rem;
+        font-family: sans-serif;
+    }
+
+    .bestsellers {
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+    }
+
+        .bestsellers h2 {
+            text-align: center;
+        }
+
+
+    .item {
+        width: 30%;
+        text-align: center;
+        padding: 10px;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+    }
+
+    .AddToCart {
+        font-size: 1rem;
+        color: #fff;
+        border: none;
+        background-color: black;
+        padding: 10px 30px;
+        border-radius: 50px;
+        transition: 1000ms;
+        align-items: center;
+        cursor: pointer;
+    }
+
+        .AddToCart:hover {
+            transition: 1000ms;
+            padding: 10px 50px;
+            color: black;
+            background-color: white;
+            border: solid 2px black;
+        }
+
+
+        .item img {
+            width: 60%;
+            height: 40vh;
+            border-radius: 10px;
+        }
+
+        .item h3 {
+            margin: 10px 0;
+        }
+
+        .item h2 {
+            font-weight: bolder;
+            color: black;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .item p {
+            margin: 10px 0;
+            color: #555;
+        }
+
+    .studentsaying {
+        width: 45%;
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-left: 3%;
+    }
+
+        .studentsaying p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .studentsaying h3 {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid black;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+</style>
+<h1 class="blueunder">What Our Students Say </h1>
+<div class="studentsaying">
+    <p>"The service was exceptional and the staff was friendly and professional."</p>
+    <h3>Bob Simpsion</h3>
+</div>
+
+<div style="margin-left: 50%;" class="studentsaying">
+    <p>"Wearing the Avcol uniform, highlights the HEART values of our college; I am proud to wear it everyday"</p>
+    <h3>- Jayhmain William</h3>
+</div>
+
+<div class="studentsaying">
+    <p>"The uniform is very comfortable unlike my old school."</p>
+    <h3>James Jackson</h3>
+</div>
+
+<div style="margin-left: 50%;" class="studentsaying">
+    <p>"I am proud to where the Avondale uniform"</p>
+    <h3>- Jane Doe</h3>
+</div>
+
+
+
+<section>
+    <div class="location">
+        <div class="text-section" style="margin-left: 3%;">
+            <h1 class="blueunder">Location</h1>
+            <p>Skip the queue and order online, then pick up your order when its ready.</p>
+
+
+            <div class="contact-info">
+                <p><b>Pick up Address</b></p>
+                <p>
+                    51 Victor Street, Avondale<br>
+
+                    Auckland 1026
+                    <br>
+
+                    New Zealand<br>
+                </p>
+                <p>phone: <a>+64 9 828 7024</a></p>
+
+                <p><a>email: Uniform@avcol.school.nz</a></p>
+
+            </div>
+
+            <p>Come meet our friendly staff at the avondale college uniform shop during these times</p>
+            <div class="hours">
+
+                <p> Monday to Friday during term time, from 8.15 am - 1.30 pm, selling the Avondale College uniform and some stationery items.</p>
+            </div>
+            <p>When you place an order, you will receive an email detailing the pickup time and date.</p>
+            <div class="buttons">
+                <button onclick="window.location.href='tel:092133739'">CALL</button>
+                <button onclick="window.location.href='www.google.com/maps/place/Avondale+College/@@-36.8911528,174.6896728,16.36z/data=!4m8!3m7!1s0x6d0d46cd23ece1e9:0xe57882263b141a5e!8m2!3d-36.8917835!4d174.6908506!9m1!1b1!16zL20vMGRmOHBk?hl=en-NZ&entry=ttu'">DIRECTIONS</button>
+            </div>
+        </div>
+        <div class="map-section">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.9401849489336!2d174.6882756760394!3d-36.89177918191069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d46cd23ece1e9%3A0xe57882263b141a5e!2sAvondale%20College!5e0!3m2!1sen!2sus!4v1720241713704!5m2!1sen!2sus" style="border:0;" width="680px"
+                    height="560px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+<section>
+    <div style="display: grid; background-color: #ffffff;  width:50%; margin-left: 25%; padding: 2%; border-radius: 10px; color: rgb(0, 0, 0);">
+        <h1 class="blueunder" style="text-align: center;">Contact Us</h1>
+        <form asp-controller="home" asp-action="SendEmail">
+
+            <input name="subject" value="HelpForm" type="hidden" />
+            
+
+
+            <div style="margin-bottom: 15px;">
+                <label for="email" style="display: block; margin-bottom: 5px;">Enter your email:</label>
+                <input type="email" id="email" name="email" style="width: 100%; padding: 8px;  border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="question" style="display: block; margin-bottom: 5px;">Enter your question:</label>
+                <textarea id="question" name="htmlForBody" rows="4" style="width: 100%; padding: 8px; border-radius: 5px;"></textarea>
+            </div>
+            <div style="text-align: center;">
+
+
+                <div class="buttons">
+
+                    <button style="border-radius: 20px;" onclick="Submit">Send</button>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+
+
+</section>
+
+
+
+
+
+<style>
+
+
+    .location {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+
+    .text-section, .map-section {
+        flex: 1;
+        min-width: 300px;
+        margin: 10px;
+    }
+
+    .text-section {
+        max-width: 600px;
+    }
+
+
+
+        .text-section h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .text-section p {
+            margin-bottom: 10px;
+        }
+
+    .contact-info {
+        margin-bottom: 20px;
+    }
+
+    .buttons {
+        margin-bottom: 20px;
+    }
+
+        .buttons button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+    .hours {
+        margin-bottom: 20px;
+    }
+
+        .hours h3 {
+            margin-bottom: 10px;
+        }
+
+    .map-section {
+        max-width: 400px;
+        text-align: center;
+    }
+
+        .map-section img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+</style>
+
+
+
+
+
+
+<style>
+    .body {
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0%;
+        color: black;
+    }
+
+    a, p, h1, h2, h3, label {
+        color: rgb(10, 11, 32);
+        text-decoration: none;
+    }
+
+    .blueunder {
+        text-decoration: underline;
+        text-decoration-color: darkblue;
+    }
+
+    .pictureofschool {
+        width: 102%;
+        padding: 0;
+        height: 85vh;
+        margin: 0%;
+        margin-left: -1%;
+    }
+
+
+    @@media only screen and (max-Width: 800px) {
+
+        map-section{
+            margin-left: 3%;
+            margin-top: 4%;
+            width: 80% !important;
+            
+            
+            
+        }
+        .pictureofschool{
+            display:none;
+        }
+
+        .item {
+            width: 90%;
+            text-align: center;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin:auto;
+           
+        }
+
+        .items {
+            margin-top: 2%;
+            display: block;
+            justify-content: space-around;
+        }
+        #Heading {
+            margin-top: -3%;
+            width: 100%;
+            height: 80vh;
+            color: black;
+            background-color: #0d0f11;
+            padding: 5%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+
+        .colored-div {
+            width: 85%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 8%;
+        }
+
+        .InfoBoxSection {
+            height: 70vh;
+            width: 100%;
+        }
+
+        #boxess {
+            display: block;
+            align-self: center;
+            margin: auto;
+        }
+
+        .InfoBoxes {
+            display: grid;
+            grid-column-gap: 10%;
+            grid-template-columns: 40% 40%;
+            grid-template-rows: 30%, 30%;
+            margin-top: 20%;
+            margin-left: 8%;
+            margin: 0;
+        }
+
+        .about-logo {
+            margin-left: 5%;
+            margin-right: 20px;
+            width: 20%;
+            height: 10vh;
+        }
+    }
+
+    
+</style>
+
+
