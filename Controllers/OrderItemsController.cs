@@ -6,7 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-
+using Stripe;
+using Stripe.Checkout;
+using Stripe.Climate;
+using System.Security.Claims;
+using static System.Net.WebRequestMethods;
+using SessionCreateOptions = Stripe.Checkout.SessionCreateOptions;
+using System.Drawing;
 
 namespace ShopUnifromProject.Controllers
 {
@@ -17,7 +23,7 @@ namespace ShopUnifromProject.Controllers
         private readonly StripeSettings _stripeSettings;
 
 
-        public OrderItemsController( ApplicationDbContext context)
+        public OrderItemsController(IOptions<StripeSettings> stripeSettings, ApplicationDbContext context)
         {
             _stripeSettings = stripeSettings.Value;
             _context = context;
@@ -35,7 +41,7 @@ namespace ShopUnifromProject.Controllers
         }
 
 
-   
+
 
 
 
@@ -62,7 +68,7 @@ namespace ShopUnifromProject.Controllers
             if (itemsInOrder.Sum(a => a.Quantity) >= 35)
             {
                 ViewBag.CartFull = 1;
-            //return to Index method passing in the order id as well as true for the cartfull parameter
+                //return to Index method passing in the order id as well as true for the cartfull parameter
                 return RedirectToAction("Index", new { id = orderId, CartFull = true });
             }
 
@@ -71,15 +77,15 @@ namespace ShopUnifromProject.Controllers
 
 
 
-           //If item Exist in order
-           if (ExistingItem != null)
+            //If item Exist in order
+            if (ExistingItem != null)
             {
                 //increase the quantity by 1
                 ExistingItem.Quantity++;
             }
             else // If item is not in order add new item
-            { 
-               
+            {
+
                 var OrderItem = new OrderItem
                 {
                     //Set the OrderId to the orderId string, the ItemId to the itemId passed into the method and the quantity to one.
@@ -91,10 +97,10 @@ namespace ShopUnifromProject.Controllers
                 // add the new Orderitem details to the database
                 _context.OrderItem.Add(OrderItem);
             }
-           // Save changes
+            // Save changes
             await _context.SaveChangesAsync();
 
-           //Find the Order where the OrderId is equal to the orderId string.
+            //Find the Order where the OrderId is equal to the orderId string.
             var Order = _context.Order.Where(a => a.OrderId == orderId).First();
 
             // Call the Items In order method again to update the var itemsInOrder
@@ -162,14 +168,14 @@ namespace ShopUnifromProject.Controllers
                 return View("Cant find Order that Belongs to you");
 
             }
-             
+
             //Store the cart full parameter in the view bag as well as the order status.
             ViewBag.CartFull = cartFull;
             ViewBag.StatusId = order.StatusId;
             ViewBag.TotalRrice = order.TotalPrice;
 
             //retrieves all OrderItems related to the order from the database, including their items and returns it to the index view
-            var OrderItem = await _context.OrderItem.Where(a => a.OrderId == order.OrderId).Include(a => a.Items).Include(a=> a.Orders).ThenInclude(a => a.Status).ToListAsync();
+            var OrderItem = await _context.OrderItem.Where(a => a.OrderId == order.OrderId).Include(a => a.Items).Include(a => a.Orders).ThenInclude(a => a.Status).ToListAsync();
             return View(OrderItem);
         }
 
@@ -187,20 +193,20 @@ namespace ShopUnifromProject.Controllers
             Customer.PhoneNumber = phoneNumber;
 
             //Set the delivery details of orderToProccess realted parameters passed in.
-          
-
-         
-
-              
-
-                await _context.SaveChangesAsync();
 
 
-                //Create a new gift using the infromation in the realted parameters passed in.
-                
-                //add the gift Recipent and save changes
-               
-        
+
+
+
+
+            await _context.SaveChangesAsync();
+
+
+            //Create a new gift using the infromation in the realted parameters passed in.
+
+            //add the gift Recipent and save changes
+
+
 
 
             //Redirect to the Pyament Method passing in the order Id
@@ -221,10 +227,10 @@ namespace ShopUnifromProject.Controllers
             return listOrderItems;
         }
 
-      
-         
-       
-        public async Task<IActionResult>Success()
+
+
+
+        public async Task<IActionResult> Success()
         {
             //Calls the checkUserOrders method and finds the user's order whith the string order id the method returns.
             string orderId = await CheckUserOrders();
@@ -245,16 +251,16 @@ namespace ShopUnifromProject.Controllers
         }
 
 
-     
-      public async Task<IActionResult> Cancel()
+
+        public async Task<IActionResult> Cancel()
         {
             //Calls the checkUserOrders method and finds the user's order whith the string order id the method returns.
             string orderId = await CheckUserOrders();
             var userOrder = _context.Order.Where(a => a.OrderId == orderId).First();
 
             //Remove the User's Order from the database and ave changes
-             _context.Remove(userOrder);
-            await  _context.SaveChangesAsync();
+            _context.Remove(userOrder);
+            await _context.SaveChangesAsync();
             //Return action to the Order Controller index method.
             return RedirectToAction("Index", "Home");
 
@@ -264,7 +270,51 @@ namespace ShopUnifromProject.Controllers
 
         public IActionResult Payment(string orderId)
         {
-          
+            // Set the Stripe API key using the secret key from the `_stripeSettings` class.
+            StripeConfiguration.ApiKey = _stripeSettings.SecretKey;
+            //gets the items in the order with the orderId passed in.
+            var itemsInOrder = _context.OrderItem.Where(a => a.OrderId == orderId).Include(a => a.Items);
+
+            // Create options for the Stripe session.
+            var Options = new SessionCreateOptions
+            {
+                LineItems = new List<SessionLineItemOptions>(),
+                CustomerEmail = User.Identity.Name,
+                SuccessUrl = "https://localhost:7002/OrderItems/Success",
+                CancelUrl = "https://localhost:7002/OrderItems/Cancel",
+                Mode = "payment",
+                ClientReferenceId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+            };
+
+
+            // Add each ordered item to the session line items for the stripe API.
+            foreach (var item in itemsInOrder)
+            {
+                var orderedItem = new SessionLineItemOptions()
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        UnitAmount = (long)item.Items.Price * 100,
+                        Currency = "nzd",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+
+                            Description = "Size " + item.Size,
+                            Name = item.Items.Name //pases the item name
+                        }
+                    },
+                    Quantity = item.Quantity //pases the quantity
+                };
+                Options.LineItems.Add(orderedItem);
+
+            }
+
+            // Create a Stripe session using the specified options.
+            var service = new SessionService();
+            var session = service.Create(Options);
+
+            // Redirect the user to the Stripe portal for payment.
+            return Redirect(session.Url);
 
         }
 
@@ -279,7 +329,7 @@ namespace ShopUnifromProject.Controllers
             _context.OrderItem.Remove(OrderItemToRemove);
             _context.SaveChanges();
 
-           // Redirect action to Open Cart
+            // Redirect action to Open Cart
             return RedirectToAction("OpenCart");
         }
     }
