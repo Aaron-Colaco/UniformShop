@@ -106,21 +106,24 @@ new Item{Name = "Hat", CategoryId = 4, ImageURL = "../Images/unifromshop.png", C
 
 
 
+                    Context.Status.AddRange(StatusData);
 
-               
-
-
-
-                   
-
-           
+                    Context.SaveChanges();
 
 
 
 
 
 
-                   
+
+
+
+
+
+
+
+
+
 
 
 
