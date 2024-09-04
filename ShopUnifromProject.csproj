@@ -16,4 +16,8 @@
     <PackageReference Include="Stripe.net" Version="45.10.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IdUpload\" />
+  </ItemGroup>
+
 </Project>

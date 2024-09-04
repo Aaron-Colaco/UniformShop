@@ -15,6 +15,7 @@ using System.Configuration;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 using System.Net.Mail;
+using Microsoft.Extensions.Hosting.Internal;
 
 
 namespace ShopUnifromProject.Controllers
@@ -23,13 +24,38 @@ namespace ShopUnifromProject.Controllers
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        HostingEnvironment _hostingEnvironment = new HostingEnvironment();
 
         public OrdersController(ApplicationDbContext context)
         {
             _context = context;
         }
-        //Restricts Method to Admin Only
-        [Authorize(Roles = "Admin")]
+        public ActionResult SubmitId(IFormFile Idfile)
+        {
+            // Check if no file was uploaded
+            if (Idfile == null || Idfile.Length == 0)
+            {
+                ViewBag.Result = "None";
+            }
+
+
+            var uploadsPath = Path.Combine(_hostingEnvironment.ContentRootPath, "IdUpload");
+
+            // Create the full file path (including the file name)
+            var filePath = Path.Combine(uploadsPath, Idfile.FileName);
+
+      
+
+           
+        
+
+            return View(CheckOut);
+
+        }
+
+
+            //Restricts Method to Admin Only
+            [Authorize(Roles = "Admin")]
         public async Task<IActionResult> SearchByCustomer(string CustomerName)
       {
             //searches for orders where the customer's full name or email contains the CustomerName vlaue passed into the method.
