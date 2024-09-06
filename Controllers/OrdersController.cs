@@ -16,6 +16,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 using System.Net.Mail;
 using Microsoft.Extensions.Hosting.Internal;
+using Tesseract;
 
 
 namespace ShopUnifromProject.Controllers
@@ -39,19 +40,45 @@ namespace ShopUnifromProject.Controllers
             }
 
 
-            var uploadsPath = Path.Combine(_hostingEnvironment.ContentRootPath, "IdUpload");
+            var uploadsPath = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads");
 
             // Create the full file path (including the file name)
-            var filePath = Path.Combine(uploadsPath, Idfile.FileName);
+            string filePath = Path.Combine(uploadsPath, Idfile.FileName);
 
-      
+            // If the uploads folder doesn't exist, create it
+            Directory.CreateDirectory(uploadsPath);
 
-           
-        
 
-            return View(CheckOut);
+            //code from tesset lbary 
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                Idfile.CopyTo(stream);
+            }
+
+            // Define the path to the Tesseract data files (tessdata)
+            var tessDataPath = Path.Combine(_hostingEnvironment.ContentRootPath, "IdUpload");
+
+            // Create a Tesseract engine to process the image
+            using (var engine = new TesseractEngine(tessDataPath, "eng", EngineMode.Default))
+            {
+                // Load the image file from the server
+                using (Pix pix = Pix.LoadFromFile(filePath))
+                {
+                    // Process the image to extract text
+                    using (var page = engine.Process(pix))
+                    {
+
+                        string res = page.GetText();
+
+                    }
+                }
+            }
+
+
+                        return View(CheckOut);
 
         }
+
 
 
             //Restricts Method to Admin Only
