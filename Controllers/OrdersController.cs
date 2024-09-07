@@ -17,6 +17,8 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Net.Mail;
 using Microsoft.Extensions.Hosting.Internal;
 using Tesseract;
+using Microsoft.IdentityModel.Tokens;
+using System.Text.RegularExpressions;
 
 
 namespace ShopUnifromProject.Controllers
@@ -70,14 +72,47 @@ namespace ShopUnifromProject.Controllers
 
                         string res = page.GetText();
 
+
+
+                        string idPattern = @"\b(?<id>\d{6})\b"; // Matches any standalone 6-digit number
+                        string yearPattern = @"ss:\s*(?<year>\d{2})"; // Matches 'Year/class: XX'
+                        string dobPattern = @"DOB:\s*(?<dob>\d{2}/\d{2}/\d{4})"; // Matches 'DOB: MM/DD/YYYY'
+
+                        string namePattern = @"land\s*\n\s*(?<name>[A-Z][a-z]*\s+[A-Z][a-z]*)\s*\n";
+
+                        // Extract the name using regex
+                        string name = Regex.Match(res, namePattern).Groups["name"].Value.Trim();
+
+
+                        string id = Regex.Match(res, idPattern).Groups["id"].Value.Trim();
+                        string year = Regex.Match(res, yearPattern).Groups["year"].Value.Trim();
+                        string dob = Regex.Match(res, dobPattern).Groups["dob"].Value.Trim();
+
+                        if (id.IsNullOrEmpty() || year.IsNullOrEmpty() || name.IsNullOrEmpty())
+                        {
+                            ViewBag.Results = "f";
+                        }
+                        else
+                        {
+                            var customer = _context.Customer.Where(a => a.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).FirstOrDefault();
+                            customer.yearLevel = Convert.ToInt32(year);
+                            _context.SaveChanges();
+                            ViewBag.Name = name;
+                            ViewBag.id = id;
+                            ViewBag.year = year;
+                            ViewBag.dob = dob;
+
+
+                            ViewBag.Results = "t";
+                        }
+
                     }
                 }
             }
 
-
-                        return View(CheckOut);
-
+            return View(CheckOut);
         }
+        
 
 
 
