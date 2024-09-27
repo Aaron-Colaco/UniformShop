@@ -1,61 +1,109 @@
-﻿<form asp-action="SubmitId" enctype="multipart/form-data">
-    
-    < <h2>Please Upload Student Id</h2>
-    <label>File</label>
+﻿<style>
 
+</style>
 
-    <input type="file" name="IdFile" class="form-control" name="file" required />
-    <span></span>
-    <br />
-    <br />
-
-    <input type="submit" class="btn btn-default" value="Upload Image" name="submit" />
-
-
-</form>
+<div class="container">
+    <fieldset>
+    </fieldset>
 
 
 
-
+</div>
 
 
 <!--This forms gahter infromation about the cusomter and thier gift. It passes the details to the ProcessOrder method in the OrderItems Controller-->
-<form class="CheckoutForm" asp-controller="OrderItems" asp-action="ProcessOrder">
-
-
-
-        <h1>
-
-         Checkout
-
-        </h1>
-     
-
-            <!--Hidden Input pass OrderId to controller-->
-            <input name="orderId" value="@ViewBag.OrderId" type="hidden" />
+<div class="CheckoutForm">
 
 
 
 
 
-           
+    <h1>
 
+        Checkout
 
-            <br /> <br />
-
-
-
-
-            <!--SVG image-->
-
-           
-
-           
+    </h1>
 
 
 
+    @using (Html.BeginForm("submit", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group2">
+            <h2>Please Upload Student Id</h2>
+            <label>File</label>
+            <input type="file" class="form-control" name="file" required />
+            <span></span>
+            <br />
+            <br />
 
 
+            <input type="submit" class="btn btn-default" value="Upload Image" name="SubmitId" />
+        </div>
+
+    }
+    @if (ViewBag.itemsRemoved != null)
+    {
+
+    }
+
+    @if (ViewBag.Results == "t")
+    {
+        <style>
+
+            .form-group2 {
+                display: none;
+        </style>
+
+        <h3>Thanks @ViewBag.Name </h3>
+
+        <h3> We found your details in our system</h3>
+
+        <br />
+        <h4> Name: <b>@ViewBag.Name</b></h4>
+
+        <h4>Student Number:<b>@ViewBag.id</b> </h4>
+
+        <h4>Year Level:<b>@ViewBag.year </b></h4>
+
+        <h4>DOB: <b>@ViewBag.dob</b></h4>
+
+        <br />
+
+
+    }
+
+    @if (ViewBag.Results == "f")
+    {
+        <h2>Sorry We could not find you in your System</h2>
+        <h3>You can countiune to checkout but details must be verifyed when collecting order</h3>
+    }
+
+
+    <!--Hidden Input pass OrderId to controller-->
+    <input name="orderId" value="@ViewBag.OrderId" type="hidden" />
+
+
+
+
+
+
+
+
+    <br /> <br />
+
+
+
+
+    <!--SVG image-->
+
+
+
+
+
+
+
+
+    <form asp-controller="OrderItems" asp-action="ProcessOrder">
 
         <h3>Please Enter Your Details</h3>
 
@@ -63,34 +111,27 @@
 
         <label for="FullName">Enter Your Full Name</label>
 
-        <input type="text" id="FullName" name="fullName" required maxlength="29" title="Enter your Name" />
+        <input type="text" id="FullName" name="fullName" value="@ViewBag.Name" required maxlength="29" title="Enter your Name" />
 
         <br />
 
         <label for="PhoneNumber">Enter Your Phone Number</label>
 
-    
-        <input type="text" name="recipientPhone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" title="eg 0226565505 " required />
+
+        <input type="text" name="Phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" title="eg 0226565505 " required />
 
         <input vlaue="Go to Payment" type="submit" />
-
-
-
     </form>
 
 
-</style>
-<script>
-   
-
-  
+</div>
 
 
-</script>
+
 
 
     <<!--CSS CODE-->
-    <style>
+<style>
 
     .CheckoutForm {
         width: 90%;
@@ -175,5 +216,4 @@
             width: 50%;
         }
     }
-
 

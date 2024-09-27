@@ -110,7 +110,7 @@ namespace ShopUnifromProject.Controllers
                 }
             }
 
-            return View(CheckOut);
+            return View("CheckOut");
         }
         
 
