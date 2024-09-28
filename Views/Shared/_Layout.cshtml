@@ -27,7 +27,7 @@
                 <a class="navbar-brand" style="color: white; font-family: sans-serif; font-weight:bolder" asp-area="" asp-controller="Home" asp-action="Index"> AVCOL UNIFORM</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon-light"></span>
                 </button>
                 <div style="font-family: sans-serif;" class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
@@ -48,7 +48,7 @@
                             <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="Orders" asp-action="Index">My Orders</a>
                         </li>
 
-                        <li style="margin-left:54%">
+                        <li style="margin-left:48%">
 
                             <form class="Search" asp-action="Search" asp-controller="Items">
 
@@ -64,6 +64,7 @@
                             </form>
 
 
+                          
                             <style>
                                 .Search {
                                     display: flex;
@@ -71,9 +72,16 @@
                                     justify-content: center;
                                     margin-top: 1%;
                                 }
+                                .nav-item{
+                                    width:fit-content;
 
+
+
+
+
+                                }
                                 .nav-link text-light {
-                                    color: gray;
+                                    color: white;
                                 }
 
                                 .SearchTerm {
@@ -84,9 +92,11 @@
                                     opacity: 30;
                                 }
                             </style>
+                            
 
+                            </li>
 
-
+                            <li>  <partial name="_LoginPartial"/></li>
 
 
                     </ul>

@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
 using ShopUnifromProject.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ShopUnifromProject.Controllers
 {
@@ -64,14 +65,62 @@ namespace ShopUnifromProject.Controllers
             {
                 return;
             }
+           
+                return;
+            
+        }
+        public IActionResult SendEmail (string userEmail, string htmlForBody = null, string subject = null)
+        {
+
+            // Variables to store the Ceridantles for the Outlook Account as well as the Customers Email
+            var adminEmail = new MailAddress("AaronShopMvc@outlook.com", "Shop App");
+      
+            var adminpassword = "Bucket@234";
+
+
+
+            try
+            {
+                //sets up Smtp Client for the Mail Kit API.
+                var smtp = new SmtpClient
+                {
+                    //Set up to matacth the Outlook Smtp Settings
+                    Host = "smtp.office365.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(adminEmail.Address, adminpassword)
+                };
+                // Create a varaible called email content using the Mail kit Api And pass in Body and Subject 
+                using (var emailcontent = new MailMessage(adminEmail, adminEmail)
+                {
+                    Subject = subject,
+                    Body = htmlForBody,
+                    //Lets html and css code be used to cusotmise the email.
+                    IsBodyHtml = true
+
+
+                })
+                {
+                    //send the emailcontent to the user.
+                    smtp.Send(emailcontent);
+                }
+            }
+            //If error occurs dont send email and return action to the method that initially called the send email method
+            catch (Exception error)
+            {
+                return View(Index);
+            }
+
             // return action to the method that initially called the send email method
-            return;
+     
+                return View(Index);
+           
         }
 
-
-
-        //Deafualt MVC Code
-        public IActionResult Index()
+            //Deafualt MVC Code
+            public IActionResult Index()
         {
             return View();
         }
