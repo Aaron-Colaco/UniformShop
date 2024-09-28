@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using System.ComponentModel.DataAnnotations;
 
 namespace ShopUnifromProject.Models
@@ -11,12 +12,9 @@ namespace ShopUnifromProject.Models
         [MaxLength(100)]
         public string FullName { get; set; }
 
-        /// Phone number of the customer, validated with a regular expression
-        [RegularExpression(@"^\+?\d{1,3}[- ]?\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$", ErrorMessage = "Invalid phone number format")]
-        public int PhoneNumebr { get; set; }
+        public String DOB { get; set; }
 
-
-        public DateOnly DBO { get; set; }
+        public string StudentNumber { get; set; }
 
         public int yearLevel { get; set; }
         // List of orders associated with the customer

@@ -179,7 +179,7 @@ namespace ShopUnifromProject.Controllers
             return View(OrderItem);
         }
 
-        public async Task<IActionResult> ProcessOrder(string fullName, string phoneNumber)
+        public async Task<IActionResult> ProcessOrder(string fullName, string DBO, int Year, string Id)
         {
             //Calls the CheckUserOrders method and stores the return Value in a string.
             string orderId = await CheckUserOrders();
@@ -190,7 +190,9 @@ namespace ShopUnifromProject.Controllers
 
             //Set the details such as the full name and phone number of the cusotmer to realted parameters passed in.
             Customer.FullName = fullName;
-            Customer.PhoneNumber = phoneNumber;
+            Customer.DOB = DBO;
+            Customer.yearLevel = Year;
+            Customer.StudentNumber = Id;
 
             //Set the delivery details of orderToProccess realted parameters passed in.
 

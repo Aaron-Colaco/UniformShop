@@ -105,11 +105,21 @@
         <input type="text" id="FullName" name="fullName" value="@ViewBag.Name" required maxlength="29" title="Enter your Name" />
 
         <br />
+        <label for="DOB">Enter Your Date Of Birth</label>
 
-        <label for="PhoneNumber">Enter Your Phone Number</label>
+        <input type="text" id="DOB" name="DOB" value="@ViewBag.dob" required maxlength="29" title="Enter DOB" />
+
+        <label for="FullName">Enter Your Year Level </label>
+
+        <input type="Text" id="Year" name="Year" value="@ViewBag.year" required maxlength="29" title="Enter Year Level" />
 
 
-        <input type="text" name="Phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" title="eg 0226565505 " required />
+        <label for="FullName">Enter Your Year Student Number(Ac)</label>
+
+        <input type="Text" id="Id" name="Id" value="@ViewBag.id" required maxlength="29" title="Enter AC Number" />
+
+     
+
 
         <input vlaue="Go to Payment" type="submit" />
     </form>

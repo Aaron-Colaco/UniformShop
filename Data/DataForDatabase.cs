@@ -76,7 +76,7 @@ new Item{Name = "Black crew socks 3 pair", CategoryId = 3, ImageURL = "https://t
 new Item{Name = "Long black socks", CategoryId = 3, ImageURL = "https://th.bing.com/th/id/OIP.Xzzv8CwcOBDVcibpspo6jQHaJ_?rs=1&pid=ImgDetMain", CostToProduce = 10, Price = 10, Description = "Long black socks for formal wear."},
 
 // Seasonal
-new Item{Name = "Scarf", CategoryId = 4, ImageURL = "https://th.bing.com/th/id/OIP.ElbA-S4e-XJF8RAsI1P9NwHaHf?w=190&h=191&c=7&r=0&o=5&dpr=1.5&pid=1.7", CostToProduce = 20, Price = 20, Description = "Cozy scarf for cold weather."},
+new Item{Name = "Scarf", CategoryId = 4, ImageURL = "https://assets.wordans.com/files/model_specifications/2023/4/20/1276159/1276159_big.jpg?1682013979", CostToProduce = 20, Price = 20, Description = "Cozy scarf for cold weather."},
 new Item{Name = "Black/white jersey", CategoryId = 4, ImageURL = "../Images/jump.png", CostToProduce = 99, Price = 99, Description = "Warm black and white jersey for winter."},
 new Item{Name = "Jacket", CategoryId = 4, ImageURL = "../Images/unifromshop.png", CostToProduce = 120, Price = 120, Description = "Warm jacket, ideal for winter."},
 new Item{Name = "Hat", CategoryId = 4, ImageURL = "../Images/unifromshop.png", CostToProduce = 120, Price = 120, Description = "Warm jacket, ideal for winter."}

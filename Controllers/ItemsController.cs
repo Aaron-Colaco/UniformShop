@@ -81,7 +81,7 @@ namespace ShopUnifromProject.Controllers
         {
 
             //Finds all the products in the database whose name contains the search term which is passed into the search method storing it in a variable.
-            var Results = _context.Item.Where(i => i.Name.Contains(searchTerm)).Include(i => i.Categorys);
+            var Results = _context.Item.Where(i => i.Name.Contains(searchTerm) || i.Description == searchTerm || i.Categorys.Name == searchTerm).Include(i => i.Categorys);
             //Stores the categorys in the database in the viewbag.
             ViewBag.Category = _context.Category;
             //reutrn the Index view passing the reuslts.
