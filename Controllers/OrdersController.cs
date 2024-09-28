@@ -205,6 +205,14 @@ namespace ShopUnifromProject.Controllers
 
         public async Task<IActionResult> Details(string id)
         {
+
+            var test = _context.Order.Where(a => a.OrderId == id && a.CustomerId == User.FindFirstValue(ClaimTypes.NameIdentifier));
+            
+            if(!User.IsInRole("Admin") && test == null)
+            {
+                throw new Exception();
+            }
+
             //find order bassed on the id passed into the method
       
             var order = await _context.Order

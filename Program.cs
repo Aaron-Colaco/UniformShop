@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShopUnifromProject.Data;
+using ShopUnifromProject.Models;
+using ShopUnifromProject.Stripe_Payment_API;
 
 namespace ShopUnifromProject
 {
@@ -16,10 +18,12 @@ namespace ShopUnifromProject
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            builder.Services.AddDefaultIdentity<Customer>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
+            builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("StripeSettings"));
+            var key = builder.Configuration.GetValue<string>("StripeSettings:SecretKey");
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

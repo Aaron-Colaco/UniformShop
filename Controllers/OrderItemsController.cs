@@ -247,7 +247,7 @@ namespace ShopUnifromProject.Controllers
             HomeController.SendEmailToCustomer(userOrder.Customers.Email, EmailBody, "Thanks " + userOrder.Customers.FullName);
 
             //Return action to the Order Controller index method.
-            return RedirectToAction("Index", "Orders");
+            return RedirectToAction("Details", "Orders", new {id = orderId});
         }
 
 
@@ -280,8 +280,8 @@ namespace ShopUnifromProject.Controllers
             {
                 LineItems = new List<SessionLineItemOptions>(),
                 CustomerEmail = User.Identity.Name,
-                SuccessUrl = "https://localhost:7002/OrderItems/Success",
-                CancelUrl = "https://localhost:7002/OrderItems/Cancel",
+                SuccessUrl = "https://localhost:7055/OrderItems/Success",
+                CancelUrl = "https://localhost:7055/OrderItems/Cancel",
                 Mode = "payment",
                 ClientReferenceId = User.FindFirstValue(ClaimTypes.NameIdentifier),
             };
