@@ -21,7 +21,7 @@
         }
     </style>
     <header>
-        <nav style="background-color: black; margin-bottom:1%;" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 ">
+        <nav style="width: 100%; background-color: black; white-space: nowrap; display:inline-block;" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 ">
 
             <div font-family: sans-serif; class="container-fluid">
                 <a class="navbar-brand" style="color: white; font-family: sans-serif; font-weight:bolder" asp-area="" asp-controller="Home" asp-action="Index"> AVCOL UNIFORM</a>
@@ -31,46 +31,53 @@
                 </button>
                 <div style="font-family: sans-serif;" class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="Items" asp-action="Index">See Items</a>
-                        </li>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item">
-                                <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="SalesData" asp-action="DatePicker">Admin Sales Data</a>
-                            </li>
-                        }
-
+                       
                         <li class="nav-item">
                             <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="Orders" asp-action="Index">My Orders</a>
                         </li>
 
-                        <li style="margin-left:48%">
+                     
+                        <li class="nav-item">
+                            <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="Items" asp-action="Index">See All Items</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="Items" asp-action="FilterByCategroy" asp-route-category="Tops">Tops</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="Items" asp-action="FilterByCategroy" asp-route-categore-category="Bottoms">Bottoms</a>
+                        </li>
+
+
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                            <li class="nav-item">
+                                <a style="font-weight:bold;" class="nav-link text-light" asp-area="" asp-controller="SalesData" asp-action="DatePicker">Admin Sales Data</a>
+                            </li>
+                            }
+
+
+                        <li style="width:30%; margin-left:30%;">
 
                             <form class="Search" asp-action="Search" asp-controller="Items">
 
-                                <input style="border-radius: 20px; height: 4vh;" maxlength="50" class="SearchTerm" name="SearchTerm" type="text" placeholder="Search An Item" />
+                                <input style="border-radius: 20px; height: 5vh; width: 98%;" maxlength="20" class="SearchTerm" name="SearchTerm" type="text" placeholder="Search An Item" />
 
-                                <button type="submit" style="background: none; border: none; cursor: pointer;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" class="bi bi-search" viewBox="0 0 16 16">
-                                        <path fill="#ffffff" d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                <button type="submit" style="background-color: white; border: none; cursor: pointer; margin-left: -7%; padding: 0;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                                     </svg>
                                 </button>
 
 
+
                             </form>
-
-
                           
                             <style>
                                 .Search {
                                     display: flex;
                                     align-items: center;
                                     justify-content: center;
-                                    margin-top: 1%;
                                 }
                                 .nav-item{
                                     width:fit-content;
@@ -92,10 +99,19 @@
                                     border-radius: 20px;
                                     border: 1px solid #ccc;
                                     padding: 10px;
-                                    height: 4vh;
-                                    opacity: 30;
+                               
                                 }
                             </style>
+
+                        <li>
+                            <a asp-action="OpenCart" asp-controller="OrderItems" style="display: inline-block; padding: 0.5rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" class="bi bi-bag" viewBox="0 0 16 16">
+                                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+                                </svg>
+                            </a>
+
+
+                        </li>
                             
 
                             </li>
