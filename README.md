@@ -1,5 +1,6 @@
-<h1>Unifrom Shop Click And Collect</h1>
+<h1>Unifrom Shop Click And Collect Full Stacked App</h1>
 Adapted from my previous Gift Market project into a click-and-collect uniform shop prototype for my high school.<br>
+Made with ASP.NET Core MVC, using Entity Framework as the ORM, along with HTML/CSS and LINQ for data querying.
 <h2><B>Features</B><h2>
 <li>OCR Student Id verification</li>
 <li>Stripe Payment Gateway Integration</li>
