@@ -179,7 +179,7 @@ namespace ShopUnifromProject.Controllers
             return View(OrderItem);
         }
 
-        public async Task<IActionResult> ProcessOrder(string fullName, string DBO, int Year, string Id)
+        public async Task<IActionResult> ProcessOrder(string fullName, string DOB, int Year, string Id)
         {
             //Calls the CheckUserOrders method and stores the return Value in a string.
             string orderId = await CheckUserOrders();
@@ -190,18 +190,56 @@ namespace ShopUnifromProject.Controllers
 
             //Set the details such as the full name and phone number of the cusotmer to realted parameters passed in.
             Customer.FullName = fullName;
-            Customer.DOB = DBO;
+            Customer.DOB = DOB;
             Customer.yearLevel = Year;
             Customer.StudentNumber = Id;
 
+        /*    //Future code to verfiy student id against school database
+
+            This will run a linq query in the verfiy the sutdnet in the future, but for privacy reasons I cant access the School DB. 
+            if (_context.Customer.Where(a => a.DOB == DOB && a.yearLevel == Year && a.Id == Id && a.FullName == fullName) == null)
+            {
+                return View("Checkout");
+            }
+*/
+
+
+
             //Set the delivery details of orderToProccess realted parameters passed in.
+            string removedItems = "";
+            var order = await GetOrder();
+            bool itemsRemoved = false;
+            foreach (var item in order)
+            {
+                if (item.Items.YearLevelNeededtobuy > Customer.yearLevel)
+                {
+                    _context.OrderItem.Remove(item);
+
+                    
+                    itemsRemoved = true;
+
+                    if (!removedItems.Contains(item.Items.Name)){
+                        
+                        removedItems = removedItems + item.Items.Name;
+
+                    }
+          
+                    
+
+
+                }
+            }
+
+            if (itemsRemoved == true)
+            {
+                ViewBag.RemoveItems = removedItems;
+
+                return View();
+            }
 
 
 
 
-
-
-            await _context.SaveChangesAsync();
 
 
             //Create a new gift using the infromation in the realted parameters passed in.

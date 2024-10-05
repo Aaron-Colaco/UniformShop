@@ -67,7 +67,7 @@ namespace ShopUnifromProject.Controllers
                 using (Pix pix = Pix.LoadFromFile(filePath))
                 {
                     // Process the image to extract text
-                    using (var page = engine.Process(pix))
+                       using (var page = engine.Process(pix))
                     {
 
                         string res = page.GetText();

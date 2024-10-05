@@ -101,29 +101,32 @@
 
 
         <label for="FullName">Enter Your Full Name</label>
+        <form id="studentForm">
+                           <div>
+                       <label for="FullName">Enter Your Name:</label>
+                    <input type="text" id="FullName" name="fullName" value="@ViewBag.Name" required maxlength="29" title="Enter your Name" />
+            </div>
 
-        <input type="text" id="FullName" name="fullName" value="@ViewBag.Name" required maxlength="29" title="Enter your Name" />
+            <div>
+                <label for="DOB">Enter Your Date of Birth (DD/MM/YYYY):</label>
+                           <input type="text" id="DOB" name="DOB" value="@ViewBag.dob" required pattern="^\d{2}/\d{2}/\d{4}$" title="Enter DOB in DD/MM/YYYY format." />
+            </div>
 
-        <br />
-        <label for="DOB">Enter Your Date Of Birth</label>
+            <div>
+                <label for="Year">Enter Your Year Level (9-12):</label>
+                    <input type="number" id="Year" name="Year" value="@ViewBag.year" required min="9" max="12" title="Enter Year Level between 9 and 12." />
+            </div>
 
-        <input type="text" id="DOB" name="DOB" value="@ViewBag.dob" required maxlength="29" title="Enter DOB" />
+            <div>
+                        <label for="Id">Enter Your Student Number (6-digit):</label>
+                <input type="text" id="Id" name="Id" value="@ViewBag.id" required pattern="^\d{6}$" title="Enter a 6-digit student number." />
+                  </div>
 
-        <label for="FullName">Enter Your Year Level </label>
-
-        <input type="Text" id="Year" name="Year" value="@ViewBag.year" required maxlength="29" title="Enter Year Level" />
-
-
-        <label for="FullName">Enter Your Year Student Number(Ac)</label>
-
-        <input type="Text" id="Id" name="Id" value="@ViewBag.id" required maxlength="29" title="Enter AC Number" />
-
-     
+            <input vlaue="Go to Payment" type="submit" />
+        </form>
 
 
-        <input vlaue="Go to Payment" type="submit" />
-    </form>
-
+   
 
 
 
@@ -151,7 +154,7 @@
 
 
 
-    input[type="text"],
+        input[type="text"], type="Number"]
     textarea {
         width: 100%;
         padding: 10px;

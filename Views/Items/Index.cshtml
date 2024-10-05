@@ -14,8 +14,7 @@
 
         <div class="centeredPopUP" style="margin-top:5%">
 
-            <div style="     background-color: #e0f2f1;
-     border-radius:28px; width:39%; margin:auto; padding:1%;" class="Item">
+            <div style="background-color:white; border-radius:28px; width:39%; margin:auto; padding:1%;" class="Item">
 
 
                 <img class="ItemImgage" src=" @ViewBag.Item.ImageURL" />
@@ -24,7 +23,7 @@
 
                 <h5>  @ViewBag.Item.Name </h5>
 
-                <h5>$@ViewBag.Item.Price </h5>
+                <h5> @ViewBag.Item.Price </h5>
 
 
             </div>
@@ -40,10 +39,11 @@
                     <input name="itemId" type="hidden" value="@ViewBag.Item.ItemId" />
 
                     <div>
-
+                        <input type="submit" value="XS" name="size" />
                         <input type="submit" value="S" name="size" />
                         <input type="submit" value="M" name="size" />
                         <input type="submit" value="L" name="size" />
+                        <input type="submit" value="XL" name="size" />
                     </div>
 
                 </form>
@@ -64,24 +64,15 @@
                 margin: auto;
                 padding: 20px;
                 text-align: center;
-                background-color: #e0f2f1;
+                background-color: aliceblue;
                 border: 2px solid black;
                 border-radius: 10px;
                 font-size: 24px;
                 color: black;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
             }
 
-           .ItemImgage{
-               overflow:hidden;
-               height:7vh;
-           }
-           body{
-               overflow:hidden;
-               margin-bottom: 0%;
-               padding-bottom: 0%;
-           }
+
                 .centeredPopUP input[type ="submit"] {
                     background-color: black;
                     color: #fff;
@@ -92,18 +83,12 @@
                     margin-top: 20px;
                 }
 
-            .AddToCart, .FilterButtons, pagebuttons {
+            .AddToCart, .FilterButtons {
                 display: none;
             }
 
-            .ItemsPage{
-                opacity: 5%;
-                overflow: hidden !important;
-                height: 80vh;
-            }
-            body{
-            
-                height: 100vh;
+            .ItemsPage {
+                opacity: 5%
             }
 
         </style>
@@ -142,9 +127,7 @@
         </div>
         <!--While pop up is displayed blur backgorund and hide add to cart buttons-->
         <style>
-            
-            
-           
+
             .centeredPopUP {
                 z-index: 1000;
                 position: absolute;
@@ -155,8 +138,7 @@
                 margin: auto;
                 padding: 20px;
                 text-align: center;
-              background-color: #e0f2f1;
-                
+                background-color: aliceblue;
                 border: 2px solid black;
                 border-radius: 10px;
                 font-size: 24px;
@@ -164,16 +146,8 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             }
 
-           .ItemsPage {
-                opacity: 5%;
-                height: 75vh;
-                overflow: hidden !important;
-            }
-
-            body {
-              
-                height: 100vh;
-                overflow: hidden
+            .ItemsPage {
+                opacity: 5%
             }
 
             .centeredPopUP input[type ="submit"] {
@@ -186,7 +160,7 @@
                 margin-top: 20px;
             }
 
-            .AddToCart, .FilterButtons, .pagebuttons {
+            .AddToCart, .FilterButtons {
                 display: none;
             }
 
@@ -334,9 +308,6 @@
                 <p>  @Html.DisplayFor(modelItem => item.Categorys.Name) </p>
 
 
-                @if (!User.IsInRole("Admin"))
-                {
-
 
                     <form asp-action="SizePicker">
 
@@ -344,10 +315,8 @@
                         <input type="hidden" name="itemId" value="@item.ItemId" />
                         <input type="submit" value="Add To Cart" class="AddToCart" />
                     </form>
-                }
+                
 
-                @if (User.IsInRole("Admin"))//if the user is in the admin role display this content
-                {
 
                     <p> cost to produce   @Html.DisplayFor(modelItem => item.CostToProduce) </p>
 
@@ -358,7 +327,7 @@
                     <a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a>
 
                     <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a>
-                }
+                
 
                 <br /> <br />
             </div>
@@ -379,14 +348,14 @@
                 @if (i == ViewBag.PageNUmber)
                 {
                     // render a input submit button for the current page with value of i.
-                    <input class="pagebuttons"name="Page" value="@i" type="submit" style="background-color: black; color:white; text-align:center; padding: 5px 10px; border: none; border-radius: 3px; width:50%; margin:3%; text-align:center;" />
+                    <input name="Page" value="@i" type="submit" style="background-color: black; color:white; text-align:center; padding: 5px 10px; border: none; border-radius: 3px; width:50%; margin:3%; text-align:center;" />
 
 
                 }
                 else
                 {
                     // Render a submit button for the pthers page with a different styling form the active page with the value of i.
-                    <input name="Page" class="pagebuttons" class="AddToCart" value="@i" type="submit" style="background-color: white; color: black; padding: 5px 10px; border: none; border-radius: 3px; width:35%; margin:3%; text-align:center;" />
+                    <input name="Page" class="AddToCart" value="@i" type="submit" style="background-color: white; color: black; padding: 5px 10px; border: none; border-radius: 3px; width:35%; margin:3%; text-align:center;" />
                 }
             }
 
