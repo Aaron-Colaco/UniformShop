@@ -66,7 +66,7 @@ new Item{Name = "Long skirt", CategoryId = 2, ImageURL = "https://th.bing.com/th
 new Item{Name = "Short skirt", CategoryId = 2, ImageURL = "https://th.bing.com/th/id/OIP._U1cxfly-03eOu35SWpmkgAAAA?pid=ImgDet&w=196&h=262&c=7&dpr=1.5", CostToProduce = 69, Price = 69, Description = "Junior short skirt, ideal for summer."},
 new Item{Name = "Grey Shorts", CategoryId = 2, ImageURL = "https://cdn.theschoollocker.com.au/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/h/short_tkis.jpg", CostToProduce = 50, Price = 50, Description = "Comfortable grey pants, usually worn by boys"},
 new Item{Name = "Grey Pants", CategoryId = 2, ImageURL = "https://th.bing.com/th/id/OIP.r_XVt_QOQKyhbA9pJ6gOeQHaHa?w=600&h=600&rs=1&pid=ImgDetMain", CostToProduce = 50, Price = 50, Description = "Comfortable grey pants, usually worn by boys"},
-new Item{Name = "Black Pants", CategoryId = 2, ImageURL = "https://www.nzuniforms.com/imagecache/ii_1_1003627_5.jpg", CostToProduce = 50, Price = 50, Description = "Comfortable black pants, usually worn by y13 "},
+new Item{Name = "Black Pants", CategoryId = 2, ImageURL = "https://www.nzuniforms.com/imagecache/ii_1_1003627_5.jpg", CostToProduce = 50, Price = 50, Description = "Comfortable black pants, usually worn by y13 ", YearLevelNeededtobuy = 13},
 
 
 

@@ -89,7 +89,7 @@ namespace ShopUnifromProkect
                     user.Id = adminID;
                     user.UserName = "Admin@Uniform.co.nz";
                     user.Email = "Admin@Uniform.co.nz";
-                    user.yearLevel = 13;
+                    user.yearLevel = "13";
 
                     await userManager.CreateAsync(user, AdminPassword);
                     await userManager.AddToRoleAsync(user, "Admin");

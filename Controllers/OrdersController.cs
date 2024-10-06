@@ -105,7 +105,7 @@ namespace ShopUnifromProject.Controllers
                             }
                             else if (year != null)
                             {
-                                customer.yearLevel = int.Parse(year);
+                                customer.yearLevel = year;
                             }
                             customer.DOB = dob;
 

@@ -12,11 +12,11 @@ namespace ShopUnifromProject.Models
         [MaxLength(100)]
         public string FullName { get; set; }
 
-        public String DOB { get; set; }
+        public string DOB { get; set; }
 
         public string StudentNumber { get; set; }
 
-        public int yearLevel { get; set; }
+        public string yearLevel { get; set; }
         // List of orders associated with the customer
         public List <Order> Orders{ get; set; }
     }
