@@ -194,6 +194,7 @@ namespace ShopUnifromProject.Controllers
             Customer.yearLevel = Year;
             Customer.StudentNumber = Id;
 
+            _context.SaveChanges();
         /*    //Future code to verfiy student id against school database
 
             This will run a linq query in the verfiy the sutdnet in the future, but for privacy reasons I cant access the School DB. 
@@ -214,6 +215,7 @@ namespace ShopUnifromProject.Controllers
                 if (item.Items.YearLevelNeededtobuy > Customer.yearLevel)
                 {
                     _context.OrderItem.Remove(item);
+                    _context.SaveChanges();
 
                     
                     itemsRemoved = true;

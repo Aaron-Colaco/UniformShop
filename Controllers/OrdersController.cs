@@ -82,33 +82,63 @@ namespace ShopUnifromProject.Controllers
 
                         // Extract the name using regex
                         string name = Regex.Match(res, namePattern).Groups["name"].Value.Trim();
-
-
-                        string id = Regex.Match(res, idPattern).Groups["id"].Value.Trim();
+                       string id = Regex.Match(res, idPattern).Groups["id"].Value.Trim();
                         string year = Regex.Match(res, yearPattern).Groups["year"].Value.Trim();
                         string dob = Regex.Match(res, dobPattern).Groups["dob"].Value.Trim();
 
                         if (id.IsNullOrEmpty() || year.IsNullOrEmpty() || name.IsNullOrEmpty())
                         {
-                            ViewBag.Results = "f";
+
+                            ViewBag.Results = "flase";
                         }
                         else
                         {
-                            var customer = _context.Customer.Where(a => a.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).FirstOrDefault();
-                            customer.yearLevel = Convert.ToInt32(year);
-                            _context.SaveChanges();
-                            ViewBag.Name = name;
-                            ViewBag.id = id;
-                            ViewBag.year = year;
-                            ViewBag.dob = dob;
-
 
                             ViewBag.Results = "t";
                         }
 
+                            var customer = _context.Customer.Where(a => a.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).FirstOrDefault();
+
+                            if (id != null)
+                            {
+                                customer.StudentNumber = id;
+                            }
+                            else if (year != null)
+                            {
+                                customer.yearLevel = int.Parse(year);
+                            }
+                            customer.DOB = dob;
+
+                            if (name != null)
+                            {
+                                customer.FullName = name;
+                            }
+
+                            _context.SaveChanges();
+
+                            ViewBag.Name = customer.FullName;
+
+
+
+                            ViewBag.id = customer.StudentNumber;
+
+                            ViewBag.year = customer.yearLevel;
+                            ViewBag.dob = customer.DOB;
+
+
+                            ViewBag.Results = "t";
+
+
+
+                        }
+                      
+
+                      
+                        
+
                     }
                 }
-            }
+            
 
             return View("CheckOut");
         }
@@ -199,6 +229,18 @@ namespace ShopUnifromProject.Controllers
 
         public IActionResult CheckOut()
         {
+            var customer = _context.Customer.Where(a => a.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).FirstOrDefault();
+           
+            ViewBag.Name = customer.FullName;
+
+
+
+            ViewBag.id = customer.StudentNumber;
+
+            ViewBag.year = customer.yearLevel;
+            ViewBag.dob = customer.DOB;
+
+
             return View();
         }
       
