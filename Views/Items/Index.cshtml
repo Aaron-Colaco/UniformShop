@@ -38,12 +38,18 @@
                 <form asp-controller="OrderItems" asp-action="AddToCart">
 
                     <input name="itemId" type="hidden" value="@ViewBag.Item.ItemId" />
-
+                    @{
+                        @if(@ViewBag.Item.YearLevelNeededtobuy != 9){
+                        <p>You must be in year (@ViewBag.Item.YearLevelNeededtobuy or higher to buy this product. </p>
+                    }
+                    }
                     <div>
-
+                    <input type="submit" value="XS" name="size" />
                         <input type="submit" value="S" name="size" />
                         <input type="submit" value="M" name="size" />
                         <input type="submit" value="L" name="size" />
+                        <input type="submit" value="XL" name="size" />
+
                     </div>
 
                 </form>

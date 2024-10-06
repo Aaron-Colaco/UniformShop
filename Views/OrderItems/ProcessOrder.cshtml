@@ -5,9 +5,10 @@
 <div class="overlay">
     <div class="centeredPopUP">
         <h2>The following items were removed from your cart</h2>
-        <p>You did not meet the year level requirement to buy this product.</p>
+        
 
         <h4>@ViewBag.RemoveItems</h4>
+        <p>You did not meet the year level requirement to buy these products.</p>
 
         <form asp-action="OpenCart" asp-controller="OrderItems">
             <input class="button" type="submit" value="My Cart" />

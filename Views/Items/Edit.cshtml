@@ -24,6 +24,11 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="YearLevelNeededtobuy" class="control-label"></label>
+                <input asp-for="YearLevelNeededtobuy " class="form-control" />
+                <span asp-validation-for="YearLevelNeededtobuy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="CostToProduce" class="control-label"></label>
                 <input asp-for="CostToProduce" class="form-control" />
                 <span asp-validation-for="CostToProduce" class="text-danger"></span>
@@ -43,6 +48,7 @@
                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
