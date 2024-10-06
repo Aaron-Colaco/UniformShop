@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Mail;
 using ShopUnifromProject.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
 
 namespace ShopUnifromProject.Controllers
 {
@@ -26,9 +27,9 @@ namespace ShopUnifromProject.Controllers
         {
 
             // Variables to store the Ceridantles for the Outlook Account as well as the Customers Email
-            var adminEmail = new MailAddress("AaronShopMvc@outlook.com", "Shop App");
+            var adminEmail = new MailAddress("shopapp@zohomail.com.au", "Uniform Shop App");
             var Cusotmer = new MailAddress(userEmail, "Dear Customer");
-            var adminpassword = "Bucket@234";
+            var adminpassword = "LrwFBdvz2ns9";
 
 
 
@@ -38,7 +39,7 @@ namespace ShopUnifromProject.Controllers
                 var smtp = new SmtpClient
                 {
                     //Set up to matacth the Outlook Smtp Settings
-                    Host = "smtp.office365.com",
+                    Host = "smtp.zoho.com.au",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
@@ -73,9 +74,9 @@ namespace ShopUnifromProject.Controllers
         {
 
             // Variables to store the Ceridantles for the Outlook Account as well as the Customers Email
-            var adminEmail = new MailAddress("AaronShopMvc@outlook.com", "Shop App");
-      
-            var adminpassword = "Bucket@234";
+            var adminEmail = new MailAddress("shopapp@zohomail.com.au", "Uniform Shop App");
+           
+            var adminpassword = "LrwFBdvz2ns9";
 
 
 
@@ -85,7 +86,7 @@ namespace ShopUnifromProject.Controllers
                 var smtp = new SmtpClient
                 {
                     //Set up to matacth the Outlook Smtp Settings
-                    Host = "smtp.office365.com",
+                    Host = "smtp.zoho.com.au",
                     Port = 587,
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,

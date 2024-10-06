@@ -103,9 +103,9 @@ namespace ShopUnifromProject.Controllers
                             {
                                 customer.StudentNumber = id;
                             }
-                            else if (year != null)
+                             if (int.Parse(year) != 0)
                             {
-                                customer.yearLevel = year;
+                                customer.yearLevel = int.Parse(year);
                             }
                             customer.DOB = dob;
 
@@ -237,7 +237,10 @@ namespace ShopUnifromProject.Controllers
 
             ViewBag.id = customer.StudentNumber;
 
-            ViewBag.year = customer.yearLevel;
+            if (customer.yearLevel != 0)
+            {
+                ViewBag.year = customer.yearLevel;
+            }
             ViewBag.dob = customer.DOB;
 
 

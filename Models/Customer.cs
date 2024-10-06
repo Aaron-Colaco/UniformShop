@@ -16,7 +16,7 @@ namespace ShopUnifromProject.Models
 
         public string StudentNumber { get; set; }
 
-        public string yearLevel { get; set; }
+        public int yearLevel { get; set; }
         // List of orders associated with the customer
         public List <Order> Orders{ get; set; }
     }

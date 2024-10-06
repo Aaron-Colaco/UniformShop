@@ -179,7 +179,7 @@ namespace ShopUnifromProject.Controllers
             return View(OrderItem);
         }
 
-        public async Task<IActionResult> ProcessOrder(string fullName, string DOB, string Year, string Id)
+        public async Task<IActionResult> ProcessOrder(string fullName, string DOB, int Year, string Id)
         {
             //Calls the CheckUserOrders method and stores the return Value in a string.
             string orderId = await CheckUserOrders();
@@ -212,7 +212,7 @@ namespace ShopUnifromProject.Controllers
             bool itemsRemoved = false;
             foreach (var item in order)
             {
-                if (item.Items.YearLevelNeededtobuy > int.Parse(Customer.yearLevel))
+                if (item.Items.YearLevelNeededtobuy > Customer.yearLevel)
                 {
                     _context.OrderItem.Remove(item);
                     _context.SaveChanges();
