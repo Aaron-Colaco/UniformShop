@@ -138,7 +138,7 @@ namespace ShopUnifromProject.Controllers
 
         //Only let Users In the Admin Role Access this Method
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("ItemId,Name,Price,CostToProduce,ImageURL,Description,CategoryId")] Item item)
+        public async Task<IActionResult> Create([Bind("ItemId,Name,Price,CostToProduce,ImageURL,Description,CategoryId,YearLevelNeededtobuy")] Item item)
         {
             // Check if the model state is valid
             if (!ModelState.IsValid)
@@ -183,7 +183,7 @@ namespace ShopUnifromProject.Controllers
 
         //only lets Users In the Admin Role Access this Method
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemId,Name,Price,CostToProduce,ImageURL,Description,CategoryId")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("ItemId,Name,Price,CostToProduce,ImageURL,Description,CategoryId,YearLevelNeededtobuy")] Item item)
         {
    
             if (!ModelState.IsValid)

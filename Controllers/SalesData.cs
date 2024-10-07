@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopUnifromProject.Data;
+using System.Globalization;
 
 namespace AaronColacoAsp.NETProject.Controllers
 {
@@ -31,14 +32,14 @@ namespace AaronColacoAsp.NETProject.Controllers
 
             //Calculate total sales by summing the product of price * quantity
             decimal totalSales = orderItemData.Sum(a => a.Items.Price * a.Quantity);
-            ViewBag.totalSales = totalSales;
+            ViewBag.totalSales = totalSales.ToString("F2");
             // Calculate total expenses by summing up the (product of cost to produce * quantity)
             decimal totalExpense = orderItemData.Sum(a => a.Items.CostToProduce * a.Quantity);
-            ViewBag.totalExpense = totalExpense;
+            ViewBag.totalExpense = totalExpense.ToString("F2");
 
             // Calculate profit the difference between total sales and total expenses
-            decimal profit = totalSales - totalExpense;
-            ViewBag.profit = profit;
+            decimal profit = (totalSales - totalExpense);
+            ViewBag.profit = profit.ToString("F2");
 
 
             // Calculate the total number of items sold
@@ -57,7 +58,7 @@ namespace AaronColacoAsp.NETProject.Controllers
                 averageOrderCost = orderData.Average(a => a.TotalPrice);
             }
 
-            ViewBag.averageOrderCost = averageOrderCost;
+            ViewBag.averageOrderCost = averageOrderCost.ToString("F2"); 
             //store the data in the view bag so it can be accesed in the view.
 
             //return the salesDashboard view

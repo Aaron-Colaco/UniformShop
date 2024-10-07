@@ -111,12 +111,13 @@ namespace ShopUnifromProject.Controllers
             //If error occurs dont send email and return action to the method that initially called the send email method
             catch (Exception error)
             {
-                return View(Index);
+                return RedirectToAction("Index");
+
             }
 
             // return action to the method that initially called the send email method
-     
-                return View(Index);
+
+            return RedirectToAction("Index");
            
         }
 
