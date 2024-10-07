@@ -299,7 +299,7 @@ namespace ShopUnifromProject.Controllers
             //save changes
             _context.SaveChanges();
 
-            if (status == 2)
+            if (status == 3)
             {
 
                 //Call the SendEmailToCustomer method and pass in the customers email, a subject and body to email the customer about their status update.
@@ -316,15 +316,10 @@ namespace ShopUnifromProject.Controllers
                     "<p>Email: <a href='mailto:Uniform@avcol.school.nz'>Uniform@avcol.school.nz</a></p>" +
                     "<p>Come meet our friendly staff at the Avondale College uniform shop during these times:</p>" +
                     "<div>" +
-                    "<p>Monday to Friday during term time, from 8.15 am - 1.30 pm, selling the Avondale College uniform and some stationery items.</p>" +
-                    "</div>" +
-                    "<p>When you place an order, you will receive an email detailing the pickup time and date.</p>" +
-                    "<div>" +
-                    "<button onclick=\"window.location.href='https://www.google.com/maps/place/Avondale+College/@@-36.8911528,174.6896728,16.36z/data=!4m8!3m7!1s0x6d0d46cd23ece1e9:0xe57882263b141a5e!8m2!3d-36.8917835!4d174.6908506!9m1!1b1!16zL20vMGRmOHBk?hl=en-NZ&entry=ttu'\">DIRECTIONS</button>" +
-                    "</div>" +
-                    "<div class='map-section'>" +
-                    "<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.9401849489336!2d174.6882756760394!3d-36.89177918191069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d46cd23ece1e9%3A0xe57882263b141a5e!2sAvondale%20College!5e0!3m2!1sen!2sus!4v1720241713704!5m2!1sen!2sus' style='border:0;' width='680' height='560' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>" +
-                    "</div>"
+                    "<p>Monday to Friday during term time, from 8.15 am - 1.30 pm. Please remember to bring your id</p>" +
+                    "</div>" 
+                   
+                  
                 );
             }
             //return to the index action.

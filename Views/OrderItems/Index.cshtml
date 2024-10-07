@@ -74,7 +74,7 @@
                             <form asp-action="Delete" style="margin-top:-13%; margin-left:40%">
 
                                 <input type="hidden" name="itemId" value="@OrderItem.ItemId"/>
-                                <input type="submit" value="❌" />
+                                <b>  &nbsp;<input type="submit" value="X" /> </b>
 
                             </form>
                         }
@@ -100,9 +100,9 @@
     //check if the user as any order by checking if any items exist.
     if (firstOrderItem != null)
     {
-    
-    //if an order exists, that has more then one item and the status id equals one display the check out button.
-        if(firstOrderItem.Orders.StatusId == 1)
+
+        //if an order exists, that has more then one item and the status id equals one display the check out button.
+        if (firstOrderItem.Orders.StatusId == 1 && !User.IsInRole("Admin"))
         {
         <a style="color:teal;" asp-controller="Orders" asp-action="CheckOut" asp-route-id="@ViewBag.orderId">CheckOut</a>
         }
