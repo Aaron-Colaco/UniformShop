@@ -75,6 +75,7 @@ namespace ShopUnifromProject.Controllers
 
 
                         string idPattern = @"\b(?<id>\d{6})\b"; // Matches any standalone 6-digit number
+                        string yearPattern1 = @"ss:\s*(?<year>\d{1})"
                         string yearPattern = @"ss:\s*(?<year>\d{2})"; // Matches 'Year/class: XX'
                         string dobPattern = @"DOB:\s*(?<dob>\d{2}/\d{2}/\d{4})"; // Matches 'DOB: MM/DD/YYYY'
 
@@ -83,7 +84,12 @@ namespace ShopUnifromProject.Controllers
                         // Extract the name using regex
                         string name = Regex.Match(res, namePattern).Groups["name"].Value.Trim();
                        string id = Regex.Match(res, idPattern).Groups["id"].Value.Trim();
-                        string year = Regex.Match(res, yearPattern).Groups["year"].Value.Trim();
+string year = Regex.Match(res, yearPattern1).Groups["year"].Value.Trim();
+if (year != "9") 
+{
+    year = Regex.Match(res, yearPattern).Groups["year"].Value.Trim();
+}
+                        
                         string dob = Regex.Match(res, dobPattern).Groups["dob"].Value.Trim();
 
                         if (id.IsNullOrEmpty() || year.IsNullOrEmpty() || name.IsNullOrEmpty())
