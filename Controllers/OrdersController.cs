@@ -75,7 +75,7 @@ namespace ShopUnifromProject.Controllers
 
 
                         string idPattern = @"\b(?<id>\d{6})\b"; // Matches any standalone 6-digit number
-                        string yearPattern1 = @"ss:\s*(?<year>\d{1})"
+                        string yearPattern1 = @"ss:\s*(?<year>\d{1});"
                         string yearPattern = @"ss:\s*(?<year>\d{2})"; // Matches 'Year/class: XX'
                         string dobPattern = @"DOB:\s*(?<dob>\d{2}/\d{2}/\d{4})"; // Matches 'DOB: MM/DD/YYYY'
 
